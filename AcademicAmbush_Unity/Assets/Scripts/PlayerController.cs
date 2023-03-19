@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
             yaw = GetComponent<Rigidbody>().velocity.z * 0.2f * tilt;
         }
 
-        GetComponent<Rigidbody>().rotation = Quaternion.Euler(0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
+        GetComponent<Rigidbody>().rotation = Quaternion.Euler(yaw, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
 
     }
     void OnTriggerEnter(Collider other)

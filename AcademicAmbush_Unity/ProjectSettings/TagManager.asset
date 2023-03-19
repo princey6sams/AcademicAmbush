@@ -12,6 +12,7 @@ TagManager:
   - Powerup2
   - PlayerStats
   - PlayerActions
+  - Asteroids
   layers:
   - Default
   - TransparentFX

@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
 
     public float spawnWait;
     public float startWait;
+    public float startLWait;
     public float waveWait;
     public float spawnLWait;
     public float spawnPWait;
@@ -75,7 +76,7 @@ public class GameController : MonoBehaviour
     }
     IEnumerator SpawnLabs()
     {
-        yield return new WaitForSeconds(startWait);
+        yield return new WaitForSeconds(startLWait);
         while (true)
         {
             for (int i = 0; i < labsCount; i++)
