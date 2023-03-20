@@ -40,9 +40,9 @@ public class DestroyByContact : MonoBehaviour
             Destroy(gameObject);
             playerController.setGunCount();
             playerController.setFireRate();
+            Instantiate(explosion, transform.position, transform.rotation);
             if (other.tag != "Player")
             {
-                Instantiate(explosion, transform.position, transform.rotation);
                 Destroy(other.gameObject);
             }
             return;
@@ -50,6 +50,9 @@ public class DestroyByContact : MonoBehaviour
         else if (other.tag == "Powerup1" ||
             other.tag == "BoltEnemy" ||
             other.tag == "Enemy" ||
+            (other.tag == "Powerup1" && tag == "Asteroids") ||
+            (other.tag == "Asteroids" && tag == "Powerup1") ||
+            (other.tag == "Bolt" && tag == "Bolt") ||
             other.tag == "Boundary" ||
             (other.tag == "Player" && tag == "Bolt"))
         {

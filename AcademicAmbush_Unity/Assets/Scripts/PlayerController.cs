@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     public Boundary boundary;
     public GameObject shot;
-    public AudioSource shotA, pwrA;
+    public AudioSource shotA;
     public float speed, tilt, yaw, nextFire;
     public Transform shotSpawnC, shotSpawnL, shotSpawnR;
     public float gunCount = 0; //powerup
@@ -22,6 +22,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if (!PauseMenuController.isPaused)
+        // {
+        //     if (Time.time > nextFire)
+        //     {
+        //         nextFire = Time.time + fireRate;
+        //         setGun();
+        //         shotA.Play();
+        //     }
+        // }
         //If statement + Input.GetButton() for bomb
         if (Time.time > nextFire)
         {
@@ -58,13 +67,13 @@ public class PlayerController : MonoBehaviour
         GetComponent<Rigidbody>().rotation = Quaternion.Euler(yaw, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
 
     }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Powerup1"))
-        {
-            pwrA.Play();
-        }
-    }
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.CompareTag("Powerup1"))
+    //     {
+    //         pwrA.Play();
+    //     }
+    // }
     public void setGunCount()
     {
         gunCount += 1;
@@ -87,7 +96,9 @@ public class PlayerController : MonoBehaviour
         else if (gunCount >= 5)
         {
             fireRate *= 0.9f;
+            // shot.setSpeed(0.2f);
         }
+        shot.GetComponent<Mover>().setSpeed(1.015f);
     }
 
     void setGun()

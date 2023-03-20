@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1599402304718605102}
   - component: {fileID: 1599402304718605098}
   - component: {fileID: 1599402304718605101}
-  - component: {fileID: 1599402304718605103}
   - component: {fileID: -7609357445785347712}
   m_Layer: 0
   m_Name: Labs
@@ -198,20 +197,6 @@ MonoBehaviour:
   nextFireL: 0.2
   shotL: {fileID: 1764021953714692304, guid: bcc5cf7c7f79e1f4aa03f9a52625514a, type: 3}
   shotSpawnL: {fileID: 1599402305409087119}
---- !u!114 &1599402304718605103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599402304718605095}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60c59209799a2e84c93dbd2de846e24d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMin: -8
-  speedMax: -12
 --- !u!114 &-7609357445785347712
 MonoBehaviour:
   m_ObjectHideFlags: 0
