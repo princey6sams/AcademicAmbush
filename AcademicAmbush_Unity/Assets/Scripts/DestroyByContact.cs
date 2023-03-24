@@ -50,6 +50,7 @@ public class DestroyByContact : MonoBehaviour
         else if (other.tag == "Powerup1" ||
             other.tag == "BoltEnemy" ||
             other.tag == "Enemy" ||
+            other.tag == "BG" ||
             (other.tag == "Powerup1" && tag == "Asteroids") ||
             (other.tag == "Asteroids" && tag == "Powerup1") ||
             (other.tag == "Bolt" && tag == "Bolt") ||

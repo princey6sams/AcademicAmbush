@@ -13,6 +13,8 @@ TagManager:
   - PlayerStats
   - PlayerActions
   - Asteroids
+  - Ground
+  - BG
   layers:
   - Default
   - TransparentFX

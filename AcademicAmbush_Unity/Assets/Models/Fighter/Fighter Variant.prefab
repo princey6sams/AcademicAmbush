@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1571445657009803872}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &917489808
 GameObject:
@@ -60,7 +60,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1571445657009803872}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1511699753
 GameObject:
@@ -93,7 +93,7 @@ Transform:
   - {fileID: 1316278158793862048}
   - {fileID: 1316278157029486167}
   m_Father: {fileID: 1571445657009803872}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1994214612
 GameObject:
@@ -124,7 +124,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1571445657009803872}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1316278157029881045
 PrefabInstance:
@@ -390,7 +390,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3bbaa6ad74a9b46408c80c7e64b7274d,
         type: 3}
       propertyPath: m_Name
-      value: Fighter
+      value: Fighter Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3bbaa6ad74a9b46408c80c7e64b7274d,
         type: 3}
@@ -684,18 +684,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8246e543b51cd4d44911be62076c0f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  tilt: 3
   boundary:
     xMin: -33
     xMax: 33
     zMin: -6
     zMax: 25.5
   shot: {fileID: 1764021953714692304, guid: 7558eb6610463ff4191a0fa2c50eaf90, type: 3}
+  shotA: {fileID: 0}
+  speed: 20
+  tilt: 3
+  yaw: 0
+  nextFire: 0.2
   shotSpawnC: {fileID: 804075997}
   shotSpawnL: {fileID: 917489809}
   shotSpawnR: {fileID: 1994214613}
-  nextFire: 0.2
   gunCount: 0
   fireRate: 1
 --- !u!1001 &1316278158793994530

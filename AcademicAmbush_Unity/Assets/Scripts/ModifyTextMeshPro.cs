@@ -11,8 +11,8 @@ public class ModifyTextMeshPro : MonoBehaviour
     {
         score.text = "SCORE:000";
 
-        // string nScore = "001";
+        string nScore = "001";
 
-        // score.text = nScore;
+        score.text = nScore;
     }
 }

@@ -28,6 +28,8 @@ public class PauseMenuController : MonoBehaviour
                 PauseGame();
             }
         }
+
+
     }
 
     public void PauseGame()
@@ -44,11 +46,11 @@ public class PauseMenuController : MonoBehaviour
         isPaused = false;
     }
 
-    // public void GoToMainMenu()
-    // {
-    //     Time.timeScale = 1f;
-    //     SceneManager.LoadScene("MainMenu");
-    // }
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
+    }
 
     // public void QuitGame()
     // {
