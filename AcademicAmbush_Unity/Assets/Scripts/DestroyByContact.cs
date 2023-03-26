@@ -7,7 +7,7 @@ public class DestroyByContact : MonoBehaviour
     public GameObject explosion;
     public GameObject playerExplosion;
     public GameObject bulletExplosion;
-    public uint scoreValue;
+    public byte scoreValue;
     public float damageValue;
     // public AudioSource pwrA;
     private GameController gameController;
@@ -53,6 +53,7 @@ public class DestroyByContact : MonoBehaviour
             other.tag == "BG" ||
             (other.tag == "Powerup1" && tag == "Asteroids") ||
             (other.tag == "Asteroids" && tag == "Powerup1") ||
+            (other.tag == "Asteroids" && tag == "Asteroids") ||
             (other.tag == "Bolt" && tag == "Bolt") ||
             other.tag == "Boundary" ||
             (other.tag == "Player" && tag == "Bolt"))

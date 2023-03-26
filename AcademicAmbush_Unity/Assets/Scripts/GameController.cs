@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public GameObject powerUp;
 
     public Vector3 spawnValues;
-    private uint score;
+    private ulong score;
     public int hazardCount;
     public int labsCount;
 
@@ -107,7 +107,7 @@ public class GameController : MonoBehaviour
     {
         scoreText.text = "Score: " + score;
     }
-    public void AddScore(uint newScore)
+    public void AddScore(ulong newScore)
     {
         score += newScore;
         updateScore();

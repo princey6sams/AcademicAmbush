@@ -8,10 +8,6 @@ public class LabController : MonoBehaviour
     public float nextFireL;
     public GameObject shotL;
     public Transform shotSpawnL;
-    void Start()
-    {
-
-    }
     void Update()
     {
         if (Time.time > nextFireL)
