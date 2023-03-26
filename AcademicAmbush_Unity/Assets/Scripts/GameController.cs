@@ -7,8 +7,6 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public TMP_Text scoreText;
-    public TMP_Text restartText;
-    public TMP_Text gameOverText;
 
     public GameObject hazard;
     public GameObject labs;
@@ -26,17 +24,13 @@ public class GameController : MonoBehaviour
     public float spawnLWait;
     public float spawnPWait;
 
-    private bool gameOver;
-    private bool restart;
+    public bool gameOver;
 
     public Transform labSpawn;
 
     void Start()
     {
         gameOver = false;
-        gameOverText.text = "";
-        restart = false;
-        restartText.text = "";
 
         score = 0; //Convert to 000
         updateScore();
@@ -46,13 +40,13 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
-        if (restart)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                SceneManager.LoadScene("Main");
-            }
-        }
+        // if (restart)
+        // {
+        //     if (Input.GetKeyDown(KeyCode.R))
+        //     {
+        //         SceneManager.LoadScene("Main");
+        //     }
+        // }
     }
     IEnumerator SpawnWaves()
     {
@@ -68,8 +62,6 @@ public class GameController : MonoBehaviour
             }
             if (gameOver)
             {
-                restartText.text = "Restart";
-                restart = true;
                 break;
             }
         }
@@ -122,7 +114,6 @@ public class GameController : MonoBehaviour
     }
     public void GameOver()
     {
-        gameOverText.text = "Game Over!";
         gameOver = true;
     }
 }

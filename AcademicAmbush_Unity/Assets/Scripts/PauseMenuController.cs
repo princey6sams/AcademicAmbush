@@ -28,8 +28,6 @@ public class PauseMenuController : MonoBehaviour
                 PauseGame();
             }
         }
-
-
     }
 
     public void PauseGame()

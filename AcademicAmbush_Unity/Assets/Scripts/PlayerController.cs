@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class Boundary
@@ -14,11 +15,27 @@ public class PlayerController : MonoBehaviour
     public Boundary boundary;
     public GameObject shot;
     public AudioSource shotA;
+    public TMP_Text lifeText;
     public float speed, tilt, yaw, nextFire;
+    public uint lifeCount;
+    public static float playerHealth;
     public Transform shotSpawnC, shotSpawnL, shotSpawnR;
     public float gunCount = 0; //powerup
     public float fireRate = 1; //powerup combined w/ gunCount
+    private GameController gameController;
 
+    void Start()
+    {
+        lifeCount = 4;
+        playerHealth = 105;
+        lifeText.text = "LIVES: " + lifeCount;
+
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -42,7 +59,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -61,7 +77,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            yaw = GetComponent<Rigidbody>().velocity.z * 0.2f * tilt;
+            yaw = GetComponent<Rigidbody>().velocity.z * 0.1f * tilt;
         }
 
         GetComponent<Rigidbody>().rotation = Quaternion.Euler(yaw, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
@@ -117,6 +133,25 @@ public class PlayerController : MonoBehaviour
             Instantiate(shot, shotSpawnC.position, shotSpawnC.rotation); //Center
             Instantiate(shot, shotSpawnL.position, shotSpawnL.rotation); //Left
             Instantiate(shot, shotSpawnR.position, shotSpawnR.rotation); //Right
+        }
+    }
+
+    public void setLife(float damage)
+    {
+        playerHealth -= damage;
+        lifeText.text = "LIVES: " + lifeCount;
+
+
+        if (playerHealth <= 0 && lifeCount != 0)
+        {
+            playerHealth = 105;
+            lifeCount -= 1;
+            lifeText.text = "LIVES: " + lifeCount;
+        }
+        if (lifeCount == 0)
+        {
+            lifeText.text = "LIVES: 0";
+            gameController.gameOver = true;
         }
     }
 }

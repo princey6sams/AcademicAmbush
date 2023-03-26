@@ -8,6 +8,7 @@ public class DestroyByContact : MonoBehaviour
     public GameObject playerExplosion;
     public GameObject bulletExplosion;
     public uint scoreValue;
+    public float damageValue;
     // public AudioSource pwrA;
     private GameController gameController;
     private PlayerController playerController;
@@ -36,14 +37,13 @@ public class DestroyByContact : MonoBehaviour
             (tag == "Powerup1" && other.tag == "Bolt") ||
             (other.tag == "Player" && tag == "Powerup1"))
         { // Clearly Defined Behavior
-            // pwrA.Play();
             Destroy(gameObject);
             playerController.setGunCount();
             playerController.setFireRate();
             Instantiate(explosion, transform.position, transform.rotation);
             if (other.tag != "Player")
             {
-                Destroy(other.gameObject);
+                Destroy(other.gameObject); // To Destroy Bullet but not Player
             }
             return;
         }
@@ -60,13 +60,17 @@ public class DestroyByContact : MonoBehaviour
             return; // Ignore List for users of DestroyByContact
         }
 
-        else if (other.tag == "Player") // Game Over Condition
+        else if (other.tag == "Player") // Game Over & Life Condition
         {
             Debug.Log(gameObject.name + "and" + other.gameObject.name);
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             Destroy(gameObject);
-            Destroy(other.gameObject);
-            gameController.GameOver();
+            playerController.setLife(damageValue);
+            if (playerController.lifeCount == 0)
+            {
+                Destroy(other.gameObject);
+                gameController.GameOver();
+            }
             return;
         }
 

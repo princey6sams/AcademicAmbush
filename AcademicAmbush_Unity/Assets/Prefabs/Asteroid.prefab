@@ -96,6 +96,7 @@ MonoBehaviour:
   playerExplosion: {fileID: 100008, guid: 3455fe69f7ddc4604b95bf9b0a1e88d7, type: 3}
   bulletExplosion: {fileID: 100008, guid: acb1843c3f086e54791f2324b7d3e469, type: 3}
   scoreValue: 5
+  damageValue: 50
 --- !u!114 &8113037368929822731
 MonoBehaviour:
   m_ObjectHideFlags: 0
