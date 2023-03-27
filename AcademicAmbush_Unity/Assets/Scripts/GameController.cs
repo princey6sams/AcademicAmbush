@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using GS;
 
 public class GameController : MonoBehaviour
 {
@@ -24,13 +25,12 @@ public class GameController : MonoBehaviour
     public float spawnLWait;
     public float spawnPWait;
 
-    public bool gameOver;
-
     public Transform labSpawn;
 
     void Start()
     {
-        gameOver = false;
+        globalGameStatus.Status = GameStatus.IN_PROGRESS;
+        Debug.Log(globalGameStatus.Status.ToString());
 
         score = 0; //Convert to 000
         updateScore();
@@ -38,16 +38,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(SpawnLabs());
         StartCoroutine(SpawnPowerUps());
     }
-    void Update()
-    {
-        // if (restart)
-        // {
-        //     if (Input.GetKeyDown(KeyCode.R))
-        //     {
-        //         SceneManager.LoadScene("Main");
-        //     }
-        // }
-    }
+
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
@@ -60,7 +51,7 @@ public class GameController : MonoBehaviour
                 Instantiate(hazard, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
             }
-            if (gameOver)
+            if (globalGameStatus.Status == GameStatus.GAME_OVER)
             {
                 break;
             }
@@ -79,7 +70,7 @@ public class GameController : MonoBehaviour
             }
             yield return new WaitForSeconds(5 * spawnLWait);
 
-            if (gameOver)
+            if (globalGameStatus.Status == GameStatus.GAME_OVER)
             {
                 break;
             }
@@ -97,7 +88,7 @@ public class GameController : MonoBehaviour
             yield return new WaitForSeconds(powerUpDelay);
             powerUpDelay += 5;
 
-            if (gameOver)
+            if (globalGameStatus.Status == GameStatus.GAME_OVER)
             {
                 break;
             }
@@ -114,6 +105,7 @@ public class GameController : MonoBehaviour
     }
     public void GameOver()
     {
-        gameOver = true;
+        globalGameStatus.Status = GameStatus.GAME_OVER;
+        Debug.Log(globalGameStatus.Status.ToString());
     }
 }

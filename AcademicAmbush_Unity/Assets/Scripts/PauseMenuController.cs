@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using GS;
 
 
 public class PauseMenuController : MonoBehaviour
 {
     public GameObject pauseMenu;
-    public static bool isPaused;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class PauseMenuController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
+            if (globalGameStatus.Status == GameStatus.IS_PAUSED)
             {
                 ResumeGame();
             }
@@ -32,16 +32,18 @@ public class PauseMenuController : MonoBehaviour
 
     public void PauseGame()
     {
+        globalGameStatus.Status = GameStatus.IS_PAUSED;
+        Debug.Log(globalGameStatus.Status.ToString());
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
-        isPaused = true;
     }
 
     public void ResumeGame()
     {
+        globalGameStatus.Status = GameStatus.IN_PROGRESS;
+        Debug.Log(globalGameStatus.Status.ToString());
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        isPaused = false;
     }
 
     public void GoToMainMenu()

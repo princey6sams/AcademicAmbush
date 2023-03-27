@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using GS;
 
 public class GameOverController : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class GameOverController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.gameOver == true)
+        if (globalGameStatus.Status == GameStatus.GAME_OVER)
         {
             gameOverMenu.SetActive(true);
         }

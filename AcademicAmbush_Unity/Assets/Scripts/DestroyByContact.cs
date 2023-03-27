@@ -5,8 +5,7 @@ using UnityEngine;
 public class DestroyByContact : MonoBehaviour
 {
     public GameObject explosion;
-    public GameObject playerExplosion;
-    public GameObject bulletExplosion;
+    public GameObject otherExplosion;
     public byte scoreValue;
     public float damageValue;
     // public AudioSource pwrA;
@@ -26,15 +25,11 @@ public class DestroyByContact : MonoBehaviour
         {
             gameController = gameControllerObject.GetComponent<GameController>();
         }
-        if (!gameController)
-        {
-            Debug.Log("Cannot find 'GameController' script");
-        }
     }
     void OnTriggerEnter(Collider other)
     {
         if ((other.tag == "Powerup1" && tag == "Bolt") ||
-            (tag == "Powerup1" && other.tag == "Bolt") ||
+            // (tag == "Powerup1" && other.tag == "Bolt") ||
             (other.tag == "Player" && tag == "Powerup1"))
         { // Clearly Defined Behavior
             Destroy(gameObject);
@@ -47,11 +42,12 @@ public class DestroyByContact : MonoBehaviour
             }
             return;
         }
+
         else if (other.tag == "Powerup1" ||
             other.tag == "BoltEnemy" ||
             other.tag == "Enemy" ||
             other.tag == "BG" ||
-            (other.tag == "Powerup1" && tag == "Asteroids") ||
+            (other.tag == "Powerup1" && tag == "Asteroids") || // Only because asteriods are permitted to collide with some things
             (other.tag == "Asteroids" && tag == "Powerup1") ||
             (other.tag == "Asteroids" && tag == "Asteroids") ||
             (other.tag == "Bolt" && tag == "Bolt") ||
@@ -64,7 +60,7 @@ public class DestroyByContact : MonoBehaviour
         else if (other.tag == "Player") // Game Over & Life Condition
         {
             Debug.Log(gameObject.name + "and" + other.gameObject.name);
-            Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+            Instantiate(otherExplosion, other.transform.position, other.transform.rotation);
             Destroy(gameObject);
             playerController.setLife(damageValue);
             if (playerController.lifeCount == 0)

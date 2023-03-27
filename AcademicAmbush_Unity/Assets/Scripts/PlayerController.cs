@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using GS;
 
 [System.Serializable]
 public class Boundary
@@ -151,7 +152,8 @@ public class PlayerController : MonoBehaviour
         if (lifeCount == 0)
         {
             lifeText.text = "LIVES: 0";
-            gameController.gameOver = true;
+            globalGameStatus.Status = GameStatus.GAME_OVER;
+            Debug.Log(globalGameStatus.Status.ToString());
         }
     }
 }
