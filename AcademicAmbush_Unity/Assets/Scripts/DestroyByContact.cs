@@ -5,27 +5,9 @@ using UnityEngine;
 public class DestroyByContact : MonoBehaviour
 {
     public GameObject explosion;
-    public GameObject otherExplosion;
     public byte scoreValue;
     public float damageValue;
-    // public AudioSource pwrA;
-    private GameController gameController;
-    private PlayerController playerController;
 
-    void Start()
-    {
-        GameObject playerControllerObject = GameObject.FindWithTag("Player");
-        if (playerControllerObject)
-        {
-            playerController = playerControllerObject.GetComponent<PlayerController>();
-        }
-
-        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
-        if (gameControllerObject)
-        {
-            gameController = gameControllerObject.GetComponent<GameController>();
-        }
-    }
     void OnTriggerEnter(Collider other)
     {
         if ((other.tag == "Powerup1" && tag == "Bolt") ||
@@ -33,8 +15,8 @@ public class DestroyByContact : MonoBehaviour
             (other.tag == "Player" && tag == "Powerup1"))
         { // Clearly Defined Behavior
             Destroy(gameObject);
-            playerController.setGunCount();
-            playerController.setFireRate();
+            PlayerController.Instance.setGunCount();
+            PlayerController.Instance.setFireRate();
             Instantiate(explosion, transform.position, transform.rotation);
             if (other.tag != "Player")
             {
@@ -60,13 +42,13 @@ public class DestroyByContact : MonoBehaviour
         else if (other.tag == "Player") // Game Over & Life Condition
         {
             Debug.Log(gameObject.name + "and" + other.gameObject.name);
-            Instantiate(otherExplosion, other.transform.position, other.transform.rotation);
+            Instantiate(explosion, other.transform.position, other.transform.rotation);
             Destroy(gameObject);
-            playerController.setLife(damageValue);
-            if (playerController.lifeCount == 0)
+            PlayerController.Instance.setLife(damageValue);
+            if (PlayerController.Instance.lifeCount == 0)
             {
                 Destroy(other.gameObject);
-                gameController.GameOver();
+                GameController.Instance.GameOver();
             }
             return;
         }
@@ -74,6 +56,6 @@ public class DestroyByContact : MonoBehaviour
         Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
         Destroy(other.gameObject);
-        gameController.AddScore(scoreValue);
+        GameController.Instance.AddScore(scoreValue);
     }
 }

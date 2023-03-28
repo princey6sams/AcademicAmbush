@@ -12,7 +12,23 @@ public class Boundary
 
 public class PlayerController : MonoBehaviour
 {
-
+    private static PlayerController instance;
+    public static PlayerController Instance { get { return instance; } }
+    void Awake()
+    {
+        // If there is no instance, set this as the instance
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            // Destroy the duplicate instance
+            Destroy(gameObject);
+        }
+    }
+    public GameObject explosion;
     public Boundary boundary;
     public GameObject shot;
     public AudioSource shotA;
@@ -23,19 +39,12 @@ public class PlayerController : MonoBehaviour
     public Transform shotSpawnC, shotSpawnL, shotSpawnR;
     public float gunCount = 0; //powerup
     public float fireRate = 1; //powerup combined w/ gunCount
-    private GameController gameController;
 
     void Start()
     {
         lifeCount = 4;
         playerHealth = 105;
         lifeText.text = "LIVES: " + lifeCount;
-
-        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
-        if (gameControllerObject)
-        {
-            gameController = gameControllerObject.GetComponent<GameController>();
-        }
     }
     // Update is called once per frame
     void Update()
@@ -108,14 +117,13 @@ public class PlayerController : MonoBehaviour
         }
         else if (gunCount == 3 || gunCount == 4)
         {
-            fireRate = 0.2f;
+            fireRate = 0.25f;
         }
         else if (gunCount >= 5)
         {
-            fireRate *= 0.9f;
+            fireRate *= 0.95f;
             // shot.setSpeed(0.2f);
         }
-        shot.GetComponent<Mover>().setSpeed(1.015f);
     }
 
     void setGun()
@@ -152,6 +160,7 @@ public class PlayerController : MonoBehaviour
         if (lifeCount == 0)
         {
             lifeText.text = "LIVES: 0";
+            Instantiate(explosion, transform.position, transform.rotation);
             globalGameStatus.Status = GameStatus.GAME_OVER;
             Debug.Log(globalGameStatus.Status.ToString());
         }

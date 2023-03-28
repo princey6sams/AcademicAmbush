@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 4903291099839129225}
   - component: {fileID: 1670358741225432400}
   - component: {fileID: 1670358741225432401}
-  - component: {fileID: 1670358741225432365}
   - component: {fileID: 1670358741225432403}
-  - component: {fileID: 1670358741225432405}
+  - component: {fileID: 2367460946689694491}
   m_Layer: 0
   m_Name: PowerUp
   m_TagString: Powerup1
@@ -119,20 +118,6 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.47370005, z: 0.00000001411736}
---- !u!114 &1670358741225432365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4903291099836872777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60ab3ac43e38d04bb23b2903cf0f3f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMin: -1.3
-  speedMax: -1.7
 --- !u!114 &1670358741225432403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tumble: 7.5
---- !u!114 &1670358741225432405
+--- !u!114 &2367460946689694491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,13 +140,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4903291099836872777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfa03eb6c2d2b74c82830ed074ddbdf, type: 3}
+  m_Script: {fileID: 11500000, guid: 82f4e4937d0404c4a80afecb80b62a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100008, guid: 0cdac33082932034b98953ee3d0c8569, type: 3}
-  otherExplosion: {fileID: 100008, guid: acb1843c3f086e54791f2324b7d3e469, type: 3}
   scoreValue: 0
-  damageValue: 0
+  speedMin: -1.2
+  speedMax: -1.9
+  value: 0
+  damage: 0
 --- !u!1 &4903291099836872781
 GameObject:
   m_ObjectHideFlags: 0

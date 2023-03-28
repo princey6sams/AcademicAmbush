@@ -7,6 +7,22 @@ using GS;
 
 public class GameController : MonoBehaviour
 {
+    private static GameController instance;
+    public static GameController Instance { get { return instance; } }
+    private void Awake()
+    {
+        // If there is no instance, set this as the instance
+        if (instance == null)
+        {
+            instance = this;
+        }
+        // else if (instance != this)
+        // {
+        //     // Destroy the duplicate instance
+        //     Destroy(gameObject);
+        // }
+        DontDestroyOnLoad(gameObject);
+    }
     public TMP_Text scoreText;
 
     public GameObject hazard;
