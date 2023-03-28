@@ -8,8 +8,7 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
     public byte scoreValue;
     public float speedMin;
     public float speedMax;
-    public byte value;
-    public byte damage;
+    public byte damageValue;
     protected bool destroyCheck;
     public abstract void OnTriggerEnter(Collider other);
 
@@ -29,7 +28,7 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
     }
     public virtual bool destroyObj(Collider other)
     {
-        if (playerCheck(other) || BoltPowerUpCheck(other))
+        if (playerCheck(other) || boltPowerUpCheck(other) || !ignoreListCheck(other))
         {
             destroyCheck = true;
         }
@@ -45,7 +44,7 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
         }
         return false;
     }
-    public bool BoltPowerUpCheck(Collider other)
+    public bool boltPowerUpCheck(Collider other)
     {
         if ((other.tag == "Powerup1" && tag == "Bolt") ||
             (tag == "Powerup1" && other.tag == "Bolt") ||
@@ -55,5 +54,35 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
             return true;
         }
         return false;
+    }
+    public bool ignoreListCheck(Collider other)
+    {
+        if (other.tag == "Powerup1" ||
+            other.tag == "BoltEnemy" ||
+            other.tag == "Enemy" ||
+            other.tag == "BG" ||
+            (other.tag == "Powerup1" && tag == "Asteroids") || // Only because asteriods are permitted to collide with some things
+            (other.tag == "Asteroids" && tag == "Powerup1") ||
+            (other.tag == "Asteroids" && tag == "Asteroids") ||
+            (other.tag == "Bolt" && tag == "Bolt") ||
+            other.tag == "Boundary" ||
+            (other.tag == "Player" && tag == "Bolt"))
+        {
+            Debug.Log(gameObject.name + "and" + other.gameObject.name);
+            return true;
+        }
+        return false;
+    }
+    public void applyPlayerDamage(Collider other)
+    {
+        GameController.Instance.AddScore(scoreValue);
+        if (playerCheck(other))
+        {
+            PlayerController.Instance.setLife(damageValue);
+            if (PlayerController.Instance.lifeCount == 0 && PlayerController.Instance.playerHealth <= 0)
+            {
+                GameController.Instance.GameOver();
+            }
+        }
     }
 }

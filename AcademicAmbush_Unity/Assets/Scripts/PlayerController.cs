@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text lifeText;
     public float speed, tilt, yaw, nextFire;
     public uint lifeCount;
-    public static float playerHealth;
+    public float playerHealth;
     public Transform shotSpawnC, shotSpawnL, shotSpawnR;
     public float gunCount = 0; //powerup
     public float fireRate = 1; //powerup combined w/ gunCount
@@ -159,9 +159,13 @@ public class PlayerController : MonoBehaviour
         }
         if (lifeCount == 0)
         {
-            lifeText.text = "LIVES: 0";
+            lifeText.text = "LIVES: " + (lifeCount);
             Instantiate(explosion, transform.position, transform.rotation);
-            globalGameStatus.Status = GameStatus.GAME_OVER;
+            if (playerHealth <= 0)
+            {
+                Destroy(gameObject);
+                globalGameStatus.Status = GameStatus.GAME_OVER;
+            }
             Debug.Log(globalGameStatus.Status.ToString());
         }
     }

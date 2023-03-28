@@ -23,6 +23,7 @@ public class GameOverController : MonoBehaviour
     }
     public void RestartGame()
     {
+        GameController.Instance.GetComponent<AudioSource>().Play();
         gameOverMenu.SetActive(false);
         SceneManager.LoadScene("Main");
     }
