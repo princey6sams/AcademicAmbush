@@ -15,6 +15,7 @@ TagManager:
   - Asteroids
   - Ground
   - BG
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

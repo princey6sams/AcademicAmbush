@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     public SimpleAsteroid asteroid;
     public AdvancedLabs labs;
     public SimpleGunPowerUp powerUp;
+    public SimpleLifePowerUp powerUp2;
     public ulong score;
     public Transform labSpawn;
 
@@ -42,6 +43,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(asteroid.spawn(Quaternion.identity));
         StartCoroutine(labs.spawn(labSpawn.rotation));
         StartCoroutine(powerUp.spawn(Quaternion.identity));
+        StartCoroutine(powerUp2.spawn(Quaternion.identity));
     }
 
     void updateScore()

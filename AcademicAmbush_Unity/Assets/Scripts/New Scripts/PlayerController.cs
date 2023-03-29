@@ -179,6 +179,17 @@ public class PlayerController : MonoBehaviour
             }
             Debug.Log(globalGameStatus.Status.ToString());
         }
+
+    }
+    public void receiveLife()
+    {
+        if (lifeCount <= 3)
+        {
+            lifeCount += 1;
+        }
+        playerHealth = 100;
+        lifeText.text = "LIVES: " + (lifeCount);
+        playerHealthText.text = "HEALTH: " + playerHealth + "%";
     }
     // public void applyPlayerDamage(Collider player) THOUGHTS???
     // {

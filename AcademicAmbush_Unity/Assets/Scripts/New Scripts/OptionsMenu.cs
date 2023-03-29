@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using GS;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -22,7 +23,11 @@ public class OptionsMenu : MonoBehaviour
         {
             optionsMenu.SetActive(false);
             previousMenu.SetActive(true);
-            Time.timeScale = 0f;
+            if (previousMenu.tag == "PauseMenu")
+            {
+                globalGameStatus.Status = GameStatus.IS_PAUSED; // Problem with gamestatus and cursor after getting out of options menu, might change to singleton to help hold volume as well.
+                Time.timeScale = 0f;
+            }
         }
     }
 
