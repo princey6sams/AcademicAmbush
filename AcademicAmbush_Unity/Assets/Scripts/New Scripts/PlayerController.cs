@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -30,12 +30,13 @@ public class PlayerController : MonoBehaviour
     }
     public GameObject explosion;
     public Boundary boundary;
-    public GameObject shot;
+    public SimpleBolt shot;
     public AudioSource shotA;
     public TMP_Text lifeText;
+    public TMP_Text playerHealthText;
     public float speed, tilt, yaw, nextFire;
     public uint lifeCount;
-    public float playerHealth;
+    public byte playerHealth;
     public Transform shotSpawnC, shotSpawnL, shotSpawnR;
     public float gunCount = 0; //powerup
     public float fireRate = 1; //powerup combined w/ gunCount
@@ -43,8 +44,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         lifeCount = 4;
-        playerHealth = 105;
+        playerHealth = 100;
         lifeText.text = "LIVES: " + lifeCount;
+        playerHealthText.text = "HEALTH: " + playerHealth + "%";
     }
     // Update is called once per frame
     void Update()
@@ -122,7 +124,7 @@ public class PlayerController : MonoBehaviour
         else if (gunCount >= 5)
         {
             fireRate *= 0.95f;
-            // shot.setSpeed(0.2f);
+            shot.setSpeed(0.95f);
         }
     }
 
@@ -145,28 +147,49 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void setLife(float damage)
+    public void setLife(byte damage)
     {
-        playerHealth -= damage;
-        lifeText.text = "LIVES: " + lifeCount;
-
-
-        if (playerHealth <= 0 && lifeCount != 0)
+        if (playerHealth - damage < 0)
         {
-            playerHealth = 105;
+            playerHealth = 0;
+        }
+        else
+        {
+            playerHealth -= damage;
+        }
+        lifeText.text = "LIVES: " + lifeCount;
+        playerHealthText.text = "HEALTH: " + playerHealth + "%";
+
+        if (playerHealth == 0 && lifeCount != 0)
+        {
+            playerHealth = 100;
             lifeCount -= 1;
             lifeText.text = "LIVES: " + lifeCount;
+            playerHealthText.text = "HEALTH: " + playerHealth + "%";
         }
         if (lifeCount == 0)
         {
             lifeText.text = "LIVES: " + (lifeCount);
-            Instantiate(explosion, transform.position, transform.rotation);
-            if (playerHealth <= 0)
+            playerHealthText.text = "HEALTH: " + playerHealth + "%";
+            if (playerHealth == 0)
             {
+                Instantiate(explosion, transform.position, transform.rotation);
                 Destroy(gameObject);
                 globalGameStatus.Status = GameStatus.GAME_OVER;
             }
             Debug.Log(globalGameStatus.Status.ToString());
         }
     }
+    // public void applyPlayerDamage(Collider player) THOUGHTS???
+    // {
+    //     GameController.Instance.AddScore(scoreValue);
+    //     if (playerCheck(player))
+    //     {
+    //         setLife(damageValue);
+    //         if (lifeCount == 0 && playerHealth <= 0)
+    //         {
+    //             GameController.Instance.GameOver();
+    //         }
+    //     }
+    // }
 }

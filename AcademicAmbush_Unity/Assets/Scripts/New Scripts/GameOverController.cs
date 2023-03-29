@@ -18,6 +18,7 @@ public class GameOverController : MonoBehaviour
     {
         if (globalGameStatus.Status == GameStatus.GAME_OVER)
         {
+            GameController.Instance.ToggleCursor(true);
             gameOverMenu.SetActive(true);
         }
     }
@@ -25,11 +26,13 @@ public class GameOverController : MonoBehaviour
     {
         GameController.Instance.GetComponent<AudioSource>().Play();
         gameOverMenu.SetActive(false);
+        GameController.Instance.ToggleCursor(false);
         SceneManager.LoadScene("Main");
     }
     public void GoToMenu()
     {
         gameOverMenu.SetActive(false);
+        GameController.Instance.ToggleCursor(true);
         SceneManager.LoadScene("Menu");
     }
 }

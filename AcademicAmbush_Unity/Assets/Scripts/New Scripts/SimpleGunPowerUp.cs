@@ -7,8 +7,9 @@ public class SimpleGunPowerUp : SimpleInteractiveObjects
     public override void moveObj(params object[] args)
     {
         base.moveObj(speedMin, speedMax);
+        GetComponent<Rigidbody>().angularVelocity = Random.insideUnitSphere * tumble;
     }
-
+    
     public override void OnTriggerEnter(Collider other)
     {
         if (destroyObj(other))
@@ -22,6 +23,10 @@ public class SimpleGunPowerUp : SimpleInteractiveObjects
             Instantiate(explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
-        Debug.Log("SimpleGunPowerUp.OnTriggerEnter");
+    }
+
+    public override IEnumerator spawn( Quaternion spawnRotation)
+    {
+        yield return base.spawn(spawnRotation);
     }
 }

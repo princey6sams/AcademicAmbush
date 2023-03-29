@@ -6,20 +6,20 @@ public class Mover : MonoBehaviour
 {
     public float speedMin;
     public float speedMax;
-    void Start()
-    {
-        if (tag == "Bolt")
-        {
-            speedMin = 35;
-            speedMax = speedMin;
-        }
-        if (tag == "Enemy")
-        {
-            GetComponent<Rigidbody>().velocity = -(transform.forward) * Random.Range(speedMin, speedMax);
-            return;
-        }
-        GetComponent<Rigidbody>().velocity = transform.forward * Random.Range(speedMin, speedMax);
-    }
+    // void Start()
+    // {
+    //     if (tag == "Bolt")
+    //     {
+    //         speedMin = 35;
+    //         speedMax = speedMin;
+    //     }
+    //     if (tag == "Enemy")
+    //     {
+    //         GetComponent<Rigidbody>().velocity = -(transform.forward) * Random.Range(speedMin, speedMax);
+    //         return;
+    //     }
+    //     GetComponent<Rigidbody>().velocity = transform.forward * Random.Range(speedMin, speedMax);
+    // }
 
     // public float[] getSpeed()
     // {

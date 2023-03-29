@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using GS;
 
-public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjects, SpawnSettings
+public abstract class AdvancedInteractiveObjects : MonoBehaviour, InteractiveObjects, SpawnSettings
 {
+    public SimpleBolt shot;
     public GameObject explosion;
+    public Transform shotSpawn;
     public Vector3 spawnValues;
-    public float speedMin;
-    public float speedMax;
-    public uint incrementDelay;
     public uint count;
     public uint wait;
     public uint startWait;
     public byte scoreValue;
     public byte damageValue;
+    public float speedMin;
+    public float speedMax;
+    public float fireRate;
+    public float nextFire;
     protected bool destroyCheck;
-    public uint waveWait;
-    public float tumble;
-
-    public virtual void OnTriggerEnter(Collider other)
+    public abstract void OnTriggerEnter(Collider other);
+    public abstract void FireRateScaler();
+    // Start is called before the first frame update
+    void Start()
     {
-        if (destroyObj(other))
-        {
-            applyPlayerDamage(other);
-            Instantiate(explosion, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
+        destroyCheck = false;
+        moveObj(speedMin, speedMax);
     }
+
     public virtual IEnumerator spawn(Quaternion spawnRotation)
     {
         yield return new WaitForSeconds(startWait);
@@ -39,8 +39,7 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
                 Instantiate(this, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(wait);
             }
-            wait += incrementDelay;
-            yield return new WaitForSeconds(waveWait);
+            yield return new WaitForSeconds(5 * wait);
             if (globalGameStatus.Status == GameStatus.GAME_OVER)
             {
                 break;
@@ -48,40 +47,24 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
 
         }
     }
-    // Start is called before the first frame update
-    public virtual void Start()
-    {
-        destroyCheck = false;
-        moveObj();
-    }
+
     public virtual void moveObj(params object[] args)
     {
         speedMin = (float)args[0];
         speedMax = (float)args[1];
-        GetComponent<Rigidbody>().velocity = transform.forward * Random.Range(speedMin, speedMax);
+        GetComponent<Rigidbody>().velocity = -(transform.forward) * Random.Range(speedMin, speedMax); // only enemy uses this
     }
     public virtual bool destroyObj(Collider other)
     {
-        if (playerCheck(other) || boltPowerUpCheck(other) || !ignoreListCheck(other))//NOT
+        if (playerCheck(other) || !ignoreListCheck(other))//NOT
         {
             destroyCheck = true;
         }
         return destroyCheck;
     }
-    public bool playerCheck(Collider other) // combine checks
+    public bool playerCheck(Collider other)
     {
         if (other.tag == "Player") // Game Over & Life utilization
-        {
-            Debug.Log(gameObject.name + "and" + other.gameObject.name);
-            return true;
-        }
-        return false;
-    }
-    public bool boltPowerUpCheck(Collider other)
-    {
-        if ((other.tag == "Powerup1" && tag == "Bolt") ||
-            (tag == "Powerup1" && other.tag == "Bolt") ||
-            (other.tag == "Player" && tag == "Powerup1"))
         {
             Debug.Log(gameObject.name + "and" + other.gameObject.name);
             return true;
@@ -91,16 +74,11 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
     public bool ignoreListCheck(Collider other)
     {
         if (other.tag == "Powerup1" ||
-            (other.tag == "Powerup1" && tag == "Asteroids") || // Only because asteriods are permitted to collide with some things
-            (other.tag == "Asteroids" && tag == "Powerup1") ||
-            (other.tag == "Asteroids" && tag == "Asteroids") ||
-            (other.tag == "Bolt" && tag == "Bolt") ||
-            other.tag == "Boundary" ||
-            (other.tag == "BoltEnemy" && tag == "Powerup1") ||
-            (tag == "BoltEnemy" && other.tag == "Powerup1") ||
-            (other.tag == "Enemy" && tag == "Powerup1") ||
-            (other.tag == "Player" && tag == "Bolt"))
+            other.tag == "BoltEnemy" ||
+            other.tag == "Enemy" ||
+            other.tag == "Boundary")
         {
+            Debug.Log(gameObject.name + "and" + other.gameObject.name);
             return true;
         }
         return false;

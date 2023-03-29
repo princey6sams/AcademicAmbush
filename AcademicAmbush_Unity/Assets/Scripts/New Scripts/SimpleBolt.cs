@@ -14,12 +14,14 @@ public class SimpleBolt : SimpleInteractiveObjects
         {
             return;
         }
-        if (destroyObj(other))
+        base.OnTriggerEnter(other);
+    }
+    public void setSpeed(float multiplier)
+    {
+        if (tag == "Bolt")
         {
-            applyPlayerDamage(other);
-            Instantiate(explosion, transform.position, transform.rotation);
-            Destroy(gameObject);
+            this.speedMin *= multiplier;
+            this.speedMax *= multiplier;
         }
-        Debug.Log("SimpleBolt.OnTriggerEnter");
     }
 }

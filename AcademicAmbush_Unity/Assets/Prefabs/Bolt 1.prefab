@@ -94,8 +94,6 @@ GameObject:
   - component: {fileID: 1764021953714692300}
   - component: {fileID: 1764021953714692303}
   - component: {fileID: 1764021953714692302}
-  - component: {fileID: 3691673081541559731}
-  - component: {fileID: 3860820008745924240}
   - component: {fileID: 1793435463537024939}
   m_Layer: 0
   m_Name: Bolt 1
@@ -150,35 +148,6 @@ CapsuleCollider:
   m_Height: 0.5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3691673081541559731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764021953714692304}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60ab3ac43e38d04bb23b2903cf0f3f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMin: 40
-  speedMax: 35
---- !u!114 &3860820008745924240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764021953714692304}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfa03eb6c2d2b74c82830ed074ddbdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100008, guid: acb1843c3f086e54791f2324b7d3e469, type: 3}
-  scoreValue: 0
-  damageValue: 10
 --- !u!114 &1793435463537024939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +164,4 @@ MonoBehaviour:
   scoreValue: 0
   speedMin: 35
   speedMax: 35
-  value: 0
-  damage: 0
-  destroyCheck: 0
+  damageValue: 0
