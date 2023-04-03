@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SimpleBolt : SimpleInteractiveObjects
 {
+    public override void Start()
+    {
+        if (tag == "Bolt") { speedMin = 35; speedMax = speedMin; }
+        if (tag == "BoltEnemy") { speedMin = -20; speedMax = speedMin; }
+        base.Start();
+    }
     public override void moveObj(params object[] args)
     {
         base.moveObj(speedMin, speedMax);

@@ -62,7 +62,7 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
     }
     public virtual bool destroyObj(Collider other)
     {
-        if (playerCheck(other) || boltPowerUpCheck(other) || !ignoreListCheck(other))//NOT
+        if (playerCheck(other) || !ignoreListCheck(other))//NOT
         {
             destroyCheck = true;
         }
@@ -70,18 +70,7 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
     }
     public bool playerCheck(Collider other) // combine checks
     {
-        if (other.tag == "Player") // Game Over & Life utilization
-        {
-            Debug.Log(gameObject.name + "and" + other.gameObject.name);
-            return true;
-        }
-        return false;
-    }
-    public bool boltPowerUpCheck(Collider other)
-    {
-        if ((other.tag == "Powerup1" && tag == "Bolt") ||
-            (tag == "Powerup1" && other.tag == "Bolt") ||
-            (other.tag == "Player" && tag == "Powerup1"))
+        if (other.tag == "Player" || (other.tag == "Player" && tag == "Powerup1")) // Game Over & Life utilization
         {
             Debug.Log(gameObject.name + "and" + other.gameObject.name);
             return true;
@@ -98,6 +87,8 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
             other.tag == "Boundary" ||
             (other.tag == "BoltEnemy" && tag == "Powerup1") ||
             (tag == "BoltEnemy" && other.tag == "Powerup1") ||
+            (other.tag == "Bolt" && tag == "Powerup1") ||
+            (tag == "Bolt" && other.tag == "Powerup1") ||
             (other.tag == "Enemy" && tag == "Powerup1") ||
             (other.tag == "Player" && tag == "Bolt"))
         {

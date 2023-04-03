@@ -14,7 +14,7 @@ public class SimpleAsteroid : SimpleInteractiveObjects // Incorporate RandomRota
     {
         base.OnTriggerEnter(other);
     }
-    public override IEnumerator spawn( Quaternion spawnRotation)
+    public override IEnumerator spawn(Quaternion spawnRotation)
     {
         yield return base.spawn(spawnRotation);
     }
