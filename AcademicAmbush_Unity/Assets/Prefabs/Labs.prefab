@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -2694334332187253999, guid: 8f7b52c94d6572d42ac619492af5d3e9,
         type: 3}
       propertyPath: spawnValues.z
-      value: 55
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 1599402304718605095, guid: 8f7b52c94d6572d42ac619492af5d3e9,
         type: 3}

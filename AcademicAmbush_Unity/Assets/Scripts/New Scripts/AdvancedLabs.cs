@@ -8,11 +8,14 @@ public class AdvancedLabs : AdvancedInteractiveObjects
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > nextFire)
+        if (PlayerController.Instance)
         {
-            nextFire = Time.time + fireRate;
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-            GetComponent<AudioSource>().Play();
+            if (Time.time > nextFire)
+            {
+                nextFire = Time.time + fireRate;
+                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                GetComponent<AudioSource>().Play();
+            }
         }
     }
     public override void OnTriggerEnter(Collider other)
@@ -25,9 +28,9 @@ public class AdvancedLabs : AdvancedInteractiveObjects
         }
         Debug.Log("SimpleAsteroid.OnTriggerEnter");
     }
-    public override void FireRateScaler()
+    public override void FireRateScaler() //difficulty
     {
-
+        // GameController.Instance.score;
     }
 
     public override IEnumerator spawn(Quaternion spawnRotation)

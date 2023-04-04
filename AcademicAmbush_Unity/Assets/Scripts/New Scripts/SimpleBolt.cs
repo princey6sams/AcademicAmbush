@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SimpleBolt : SimpleInteractiveObjects
 {
+    private float lifeTime;
     public override void Start()
     {
+        lifeTime = 10;
         if (tag == "Bolt") { speedMin = 35; speedMax = speedMin; }
         if (tag == "BoltEnemy") { speedMin = -20; speedMax = speedMin; }
+        if (tag == "BoltEnemy2") { speedMin = 20; speedMax = speedMin; }
         base.Start();
     }
     public override void moveObj(params object[] args)
@@ -28,6 +31,14 @@ public class SimpleBolt : SimpleInteractiveObjects
         {
             this.speedMin *= multiplier;
             this.speedMax *= multiplier;
+        }
+    }
+
+    public void Update()
+    {
+        if (!PlayerController.Instance)
+        {
+            Destroy(gameObject, lifeTime);
         }
     }
 }

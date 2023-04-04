@@ -24,6 +24,9 @@ public class SimpleLifePowerUp : SimpleInteractiveObjects
     }
     public override IEnumerator spawn(Quaternion spawnRotation)
     {
-        yield return base.spawn(spawnRotation);
+        if (PlayerController.Instance)
+        {
+            yield return base.spawn(spawnRotation);
+        }
     }
 }

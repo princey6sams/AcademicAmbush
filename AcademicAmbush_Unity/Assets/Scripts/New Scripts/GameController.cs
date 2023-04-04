@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using TMPro;
 using GS;
 
@@ -27,10 +28,14 @@ public class GameController : MonoBehaviour
 
     public SimpleAsteroid asteroid;
     public AdvancedLabs labs;
+
+    public AdvancedMids mids;
     public SimpleGunPowerUp powerUp;
     public SimpleLifePowerUp powerUp2;
-    public ulong score;
     public Transform labSpawn;
+
+    [NonSerialized]
+    public ulong score;
 
     void Start()
     {
@@ -42,6 +47,7 @@ public class GameController : MonoBehaviour
         updateScore();
         StartCoroutine(asteroid.spawn(Quaternion.identity));
         StartCoroutine(labs.spawn(labSpawn.rotation));
+        StartCoroutine(mids.spawn(labSpawn.rotation));
         StartCoroutine(powerUp.spawn(Quaternion.identity));
         StartCoroutine(powerUp2.spawn(Quaternion.identity));
     }

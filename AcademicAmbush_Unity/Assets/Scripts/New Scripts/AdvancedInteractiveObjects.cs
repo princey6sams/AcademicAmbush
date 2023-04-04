@@ -75,6 +75,7 @@ public abstract class AdvancedInteractiveObjects : MonoBehaviour, InteractiveObj
     {
         if (other.tag == "Powerup1" ||
             other.tag == "BoltEnemy" ||
+            other.tag == "BoltEnemy2" ||
             other.tag == "Enemy" ||
             other.tag == "Boundary")
         {

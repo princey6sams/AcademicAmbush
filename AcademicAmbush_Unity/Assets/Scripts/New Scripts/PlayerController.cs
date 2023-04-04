@@ -187,7 +187,10 @@ public class PlayerController : MonoBehaviour
         {
             lifeCount += 1;
         }
-        playerHealth = 100;
+        else if (lifeCount == 4 && playerHealth < 100)
+        {
+            playerHealth = 100;
+        }
         lifeText.text = "LIVES: " + (lifeCount);
         playerHealthText.text = "HEALTH: " + playerHealth + "%";
     }

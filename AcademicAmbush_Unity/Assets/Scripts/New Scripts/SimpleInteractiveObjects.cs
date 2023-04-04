@@ -84,9 +84,14 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
             (other.tag == "Asteroids" && tag == "Powerup1") ||
             (other.tag == "Asteroids" && tag == "Asteroids") ||
             (other.tag == "Bolt" && tag == "Bolt") ||
+            (other.tag == "BoltEnemy2" && tag == "BoltEnemy2") ||
+            (other.tag == "BoltEnemy2" && tag == "BoltEnemy") ||
+            (other.tag == "BoltEnemy" && tag == "BoltEnemy2") ||
             other.tag == "Boundary" ||
             (other.tag == "BoltEnemy" && tag == "Powerup1") ||
             (tag == "BoltEnemy" && other.tag == "Powerup1") ||
+            (other.tag == "BoltEnemy2" && tag == "Powerup1") ||
+            (tag == "BoltEnemy2" && other.tag == "Powerup1") ||
             (other.tag == "Bolt" && tag == "Powerup1") ||
             (tag == "Bolt" && other.tag == "Powerup1") ||
             (other.tag == "Enemy" && tag == "Powerup1") ||
