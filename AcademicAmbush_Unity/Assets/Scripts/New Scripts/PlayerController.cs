@@ -111,17 +111,22 @@ public class PlayerController : MonoBehaviour
     {
         if (gunCount == 0)
         {
-            fireRate = 1.0f;
+            fireRate = 0.75f;
         }
         else if (gunCount == 1 || gunCount == 2)
         {
-            fireRate = 0.5f;
+            fireRate = 0.45f;
         }
         else if (gunCount == 3 || gunCount == 4)
         {
             fireRate = 0.25f;
         }
-        else if (gunCount >= 5)
+        else if (gunCount == 5 || gunCount == 6 || gunCount == 7)
+        {
+            fireRate *= 0.9f;
+            shot.setSpeed(1.25f);
+        }
+        else if (gunCount >= 8)
         {
             fireRate *= 0.95f;
             shot.setSpeed(1.15f);
