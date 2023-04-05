@@ -12,8 +12,8 @@ public class cameraFollow : MonoBehaviour
         if (PlayerController.Instance)
         {
             tempPos = transform.position;
-            if (PlayerController.Instance.transform.position.x <= 38.5 && PlayerController.Instance.transform.position.x >= -38.5) { tempPos.x = 0.7f * PlayerController.Instance.transform.position.x; }
-            if (PlayerController.Instance.transform.position.z <= 0.75 && PlayerController.Instance.transform.position.z >= -26.5) { tempPos.z = PlayerController.Instance.transform.position.z + 6; }
+            if (PlayerController.Instance.transform.position.x <= 40 && PlayerController.Instance.transform.position.x >= -40) { tempPos.x = 0.7f * PlayerController.Instance.transform.position.x; }
+            if (PlayerController.Instance.transform.position.z <= -2 && PlayerController.Instance.transform.position.z >= -24.5) { tempPos.z = PlayerController.Instance.transform.position.z + 6; }
             transform.position = tempPos;
         }
     }

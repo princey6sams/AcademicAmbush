@@ -156,7 +156,10 @@ public class PlayerController : MonoBehaviour
             shot.setSpeed(1.15f);
         }
     }
-
+    public void setSpeed()
+    {
+        speed += 0.5f;
+    }
     void setGun()
     {
         if (gunCount == 0 || gunCount == 1)

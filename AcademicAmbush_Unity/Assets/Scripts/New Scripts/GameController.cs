@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour
     public AdvancedMids mids;
     public SimpleGunPowerUp powerUp;
     public SimpleLifePowerUp powerUp2;
+    public SimpleSpeedPowerUp powerUp3;
+
     public Transform labSpawn;
 
     [NonSerialized]
@@ -54,6 +56,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(mids.spawn(labSpawn.rotation));
         StartCoroutine(powerUp.spawn(Quaternion.identity));
         StartCoroutine(powerUp2.spawn(Quaternion.identity));
+        StartCoroutine(powerUp3.spawn(Quaternion.identity));
     }
 
     void updateScore()
