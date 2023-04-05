@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 157177388113358018}
   - component: {fileID: 157177388110458084}
   - component: {fileID: 157177388111588900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5840002316980612607}
   - component: {fileID: 5840002316980612606}
   - component: {fileID: 5054610287846721697}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PowerUp2
   m_TagString: Powerup1
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ MonoBehaviour:
   speedMax: -1.9
   incrementDelay: 5
   count: 1
-  wait: 45
+  wait: 50
   startWait: 5
   scoreValue: 0
   damageValue: 0

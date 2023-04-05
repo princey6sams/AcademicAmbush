@@ -7,6 +7,8 @@ public class SimpleBolt : SimpleInteractiveObjects
     private float lifeTime;
     public override void Start()
     {
+        speedMin = 20;
+        speedMax = speedMin;
         lifeTime = 10;
         if (tag == "Bolt") { speedMin = 35; speedMax = speedMin; }
         if (tag == "BoltEnemy") { speedMin = -20; speedMax = speedMin; }
@@ -19,11 +21,9 @@ public class SimpleBolt : SimpleInteractiveObjects
     }
     public override void OnTriggerEnter(Collider other)
     {
-        if (tag == "Bolt" && other.tag == "Player")
-        {
-            return;
-        }
+
         base.OnTriggerEnter(other);
+
     }
     public void setSpeed(float multiplier)
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1764021952278698555}
   - component: {fileID: 1764021952278698553}
   - component: {fileID: 1764021952278698552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1764021953714692303}
   - component: {fileID: 1764021953714692302}
   - component: {fileID: 1793435463537024939}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt 1
   m_TagString: Bolt
   m_Icon: {fileID: 0}
@@ -161,7 +161,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100008, guid: acb1843c3f086e54791f2324b7d3e469, type: 3}
+  spawnValues: {x: 0, y: 0, z: 0}
+  speedMin: 4777.3394
+  speedMax: 4777.3394
+  incrementDelay: 0
+  count: 0
+  wait: 0
+  startWait: 0
   scoreValue: 0
-  speedMin: 35
-  speedMax: 35
   damageValue: 0
+  waveWait: 0
+  tumble: 0

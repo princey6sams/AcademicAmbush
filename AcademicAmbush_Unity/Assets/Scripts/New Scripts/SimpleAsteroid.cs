@@ -10,10 +10,6 @@ public class SimpleAsteroid : SimpleInteractiveObjects // Incorporate RandomRota
         GetComponent<Rigidbody>().angularVelocity = Random.insideUnitSphere * tumble;
     }
 
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-    }
     public override IEnumerator spawn(Quaternion spawnRotation)
     {
         yield return base.spawn(spawnRotation);

@@ -11,16 +11,17 @@ public class SimpleLifePowerUp : SimpleInteractiveObjects
     }
     public override void OnTriggerEnter(Collider other)
     {
-        if (destroyObj(other))
+        if (other.tag != "Boundary")
         {
             PlayerController.Instance.receiveLife();
-            if (!playerCheck(other))
-            {
-                Destroy(other.gameObject); // To Destroy Bullet but not Player
-            }
+            // if (!playerCheck(other))
+            // {
+            //     Destroy(other.gameObject); // To Destroy Bullet but not Player
+            // }
             Instantiate(explosion, transform.position, transform.rotation); // Audio does not change for some reason
             Destroy(gameObject);
         }
+
     }
     public override IEnumerator spawn(Quaternion spawnRotation)
     {

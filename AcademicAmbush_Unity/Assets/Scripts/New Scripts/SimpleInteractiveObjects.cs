@@ -19,12 +19,47 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
     public uint waveWait;
     public float tumble;
 
+    // Start is called before the first frame update
+    public virtual void Start()
+    {
+        destroyCheck = false;
+        moveObj();
+    }
+    public virtual void moveObj(params object[] args)
+    {
+        speedMin = (float)args[0];
+        speedMax = (float)args[1];
+        GetComponent<Rigidbody>().velocity = transform.forward * Random.Range(speedMin, speedMax);
+    }
+    public bool playerCheck(Collider other) // combine checks
+    {
+        if (other.gameObject.tag == "Player") // Game Over & Life utilization
+        {
+            Debug.Log(gameObject.name + "and" + other.gameObject.name);
+            return true;
+        }
+        return false;
+    }
+
+    public void applyPlayerDamage(Collider other) // Send to player?
+    {
+        if (playerCheck(other))
+        {
+            PlayerController.Instance.setLife(damageValue);
+            if (PlayerController.Instance.lifeCount == 0 && PlayerController.Instance.playerHealth == 0)
+            {
+                GameController.Instance.GameOver();
+            }
+        }
+    }
     public virtual void OnTriggerEnter(Collider other)
     {
-        if (destroyObj(other))
+        if (other.tag != "Boundary")
         {
             applyPlayerDamage(other);
             Instantiate(explosion, transform.position, transform.rotation);
+            if (other.gameObject.tag == "Bolt" || playerCheck(other))
+            { GameController.Instance.AddScore(scoreValue); }/////////////////////
             Destroy(gameObject);
         }
     }
@@ -46,71 +81,6 @@ public abstract class SimpleInteractiveObjects : MonoBehaviour, InteractiveObjec
                 break;
             }
 
-        }
-    }
-    // Start is called before the first frame update
-    public virtual void Start()
-    {
-        destroyCheck = false;
-        moveObj();
-    }
-    public virtual void moveObj(params object[] args)
-    {
-        speedMin = (float)args[0];
-        speedMax = (float)args[1];
-        GetComponent<Rigidbody>().velocity = transform.forward * Random.Range(speedMin, speedMax);
-    }
-    public virtual bool destroyObj(Collider other)
-    {
-        if (playerCheck(other) || !ignoreListCheck(other))//NOT
-        {
-            destroyCheck = true;
-        }
-        return destroyCheck;
-    }
-    public bool playerCheck(Collider other) // combine checks
-    {
-        if (other.tag == "Player" || (other.tag == "Player" && tag == "Powerup1")) // Game Over & Life utilization
-        {
-            Debug.Log(gameObject.name + "and" + other.gameObject.name);
-            return true;
-        }
-        return false;
-    }
-    public bool ignoreListCheck(Collider other)
-    {
-        if (other.tag == "Powerup1" ||
-            (other.tag == "Powerup1" && tag == "Asteroids") || // Only because asteriods are permitted to collide with some things
-            (other.tag == "Asteroids" && tag == "Powerup1") ||
-            (other.tag == "Asteroids" && tag == "Asteroids") ||
-            (other.tag == "Bolt" && tag == "Bolt") ||
-            (other.tag == "BoltEnemy2" && tag == "BoltEnemy2") ||
-            (other.tag == "BoltEnemy2" && tag == "BoltEnemy") ||
-            (other.tag == "BoltEnemy" && tag == "BoltEnemy2") ||
-            other.tag == "Boundary" ||
-            (other.tag == "BoltEnemy" && tag == "Powerup1") ||
-            (tag == "BoltEnemy" && other.tag == "Powerup1") ||
-            (other.tag == "BoltEnemy2" && tag == "Powerup1") ||
-            (tag == "BoltEnemy2" && other.tag == "Powerup1") ||
-            (other.tag == "Bolt" && tag == "Powerup1") ||
-            (tag == "Bolt" && other.tag == "Powerup1") ||
-            (other.tag == "Enemy" && tag == "Powerup1") ||
-            (other.tag == "Player" && tag == "Bolt"))
-        {
-            return true;
-        }
-        return false;
-    }
-    public void applyPlayerDamage(Collider other) // Send to player?
-    {
-        GameController.Instance.AddScore(scoreValue);
-        if (playerCheck(other))
-        {
-            PlayerController.Instance.setLife(damageValue);
-            if (PlayerController.Instance.lifeCount == 0 && PlayerController.Instance.playerHealth == 0)
-            {
-                GameController.Instance.GameOver();
-            }
         }
     }
 }

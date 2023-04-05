@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour
     public TMP_Text scoreText;
 
     public SimpleAsteroid asteroid;
+    public SimpleAsteroid asteroid1;
+    public SimpleAsteroid asteroid2;
     public AdvancedLabs labs;
 
     public AdvancedMids mids;
@@ -46,6 +48,8 @@ public class GameController : MonoBehaviour
         score = 0; //Convert to 000
         updateScore();
         StartCoroutine(asteroid.spawn(Quaternion.identity));
+        StartCoroutine(asteroid1.spawn(Quaternion.identity));
+        StartCoroutine(asteroid2.spawn(Quaternion.identity));
         StartCoroutine(labs.spawn(labSpawn.rotation));
         StartCoroutine(mids.spawn(labSpawn.rotation));
         StartCoroutine(powerUp.spawn(Quaternion.identity));

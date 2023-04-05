@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         //     }
         // }
         //If statement + Input.GetButton() for bomb
-        if (toggleSlider.value == 1 && Input.GetKey(KeyCode.LeftControl) && Time.time > nextFire)
+        if (toggleSlider.value == 1 && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.Space)) && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             setGun();

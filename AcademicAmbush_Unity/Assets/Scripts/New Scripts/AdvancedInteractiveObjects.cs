@@ -18,16 +18,13 @@ public abstract class AdvancedInteractiveObjects : MonoBehaviour, InteractiveObj
     public float speedMax;
     public float fireRate;
     public float nextFire;
-    protected bool destroyCheck;
     public abstract void OnTriggerEnter(Collider other);
-    public abstract void FireRateScaler();
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        destroyCheck = false;
+        DifficultyScaler();
         moveObj(speedMin, speedMax);
     }
-
     public virtual IEnumerator spawn(Quaternion spawnRotation)
     {
         yield return new WaitForSeconds(startWait);
@@ -47,20 +44,11 @@ public abstract class AdvancedInteractiveObjects : MonoBehaviour, InteractiveObj
 
         }
     }
-
     public virtual void moveObj(params object[] args)
     {
         speedMin = (float)args[0];
         speedMax = (float)args[1];
         GetComponent<Rigidbody>().velocity = -(transform.forward) * Random.Range(speedMin, speedMax); // only enemy uses this
-    }
-    public virtual bool destroyObj(Collider other)
-    {
-        if (playerCheck(other) || !ignoreListCheck(other))//NOT
-        {
-            destroyCheck = true;
-        }
-        return destroyCheck;
     }
     public bool playerCheck(Collider other)
     {
@@ -71,22 +59,9 @@ public abstract class AdvancedInteractiveObjects : MonoBehaviour, InteractiveObj
         }
         return false;
     }
-    public bool ignoreListCheck(Collider other)
-    {
-        if (other.tag == "Powerup1" ||
-            other.tag == "BoltEnemy" ||
-            other.tag == "BoltEnemy2" ||
-            other.tag == "Enemy" ||
-            other.tag == "Boundary")
-        {
-            Debug.Log(gameObject.name + "and" + other.gameObject.name);
-            return true;
-        }
-        return false;
-    }
     public void applyPlayerDamage(Collider other) // Send to player?
     {
-        
+
         if (playerCheck(other))
         {
             PlayerController.Instance.setLife(damageValue);
@@ -94,6 +69,37 @@ public abstract class AdvancedInteractiveObjects : MonoBehaviour, InteractiveObj
             {
                 GameController.Instance.GameOver();
             }
+        }
+    }
+    public virtual void DifficultyScaler()
+    {
+        if (GameController.Instance.score >= 500 && GameController.Instance.score < 1000)
+        {
+            fireRate = 1f;
+        }
+        else if (GameController.Instance.score >= 1000 && GameController.Instance.score < 1500)
+        {
+            fireRate = 0.95f;
+        }
+        else if (GameController.Instance.score >= 1500 && GameController.Instance.score < 2000)
+        {
+            fireRate = 0.925f;
+        }
+        else if (GameController.Instance.score >= 2000 && GameController.Instance.score < 3000)
+        {
+            fireRate = 0.9f;
+        }
+        else if (GameController.Instance.score >= 3000 && GameController.Instance.score < 4500)
+        {
+            fireRate = 0.85f;
+        }
+        else if (GameController.Instance.score >= 4500 && GameController.Instance.score < 6000)
+        {
+            fireRate = 0.8f;
+        }
+        else if (GameController.Instance.score >= 6000)
+        {
+            fireRate = 0.7f;
         }
     }
 }

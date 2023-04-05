@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1764021952278698555}
   - component: {fileID: 1764021952278698553}
   - component: {fileID: 1764021952278698552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1764021953714692302}
   - component: {fileID: 3217049160090466710}
   - component: {fileID: 7175925609830919250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bolt 2
   m_TagString: BoltEnemy
   m_Icon: {fileID: 0}
@@ -185,8 +185,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1be4472894949437694aead55c6da60f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.5
+  m_Pitch: 2.5
   Loop: 0
   Mute: 0
   Spatialize: 0

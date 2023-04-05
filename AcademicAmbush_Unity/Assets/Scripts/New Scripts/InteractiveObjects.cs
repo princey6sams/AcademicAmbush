@@ -5,6 +5,6 @@ using UnityEngine;
 public interface InteractiveObjects
 {
     public void moveObj(params object[] args);
-    public bool destroyObj(Collider other);
+    // public bool destroyObj(Collider other);
     public void applyPlayerDamage(Collider other);
 }

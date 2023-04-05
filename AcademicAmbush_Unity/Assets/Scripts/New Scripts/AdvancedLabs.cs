@@ -20,19 +20,14 @@ public class AdvancedLabs : AdvancedInteractiveObjects
     }
     public override void OnTriggerEnter(Collider other)
     {
-        if (destroyObj(other))
+        if (other.tag != "Boundary")
         {
             applyPlayerDamage(other);
             Instantiate(explosion, transform.position, transform.rotation);
             if (other.tag == "Bolt" || playerCheck(other))
-            { GameController.Instance.AddScore(scoreValue);}
+            { GameController.Instance.AddScore(scoreValue); }
             Destroy(gameObject);
         }
-        Debug.Log("SimpleAsteroid.OnTriggerEnter");
-    }
-    public override void FireRateScaler() //difficulty
-    {
-        // GameController.Instance.score;
     }
 
     public override IEnumerator spawn(Quaternion spawnRotation)

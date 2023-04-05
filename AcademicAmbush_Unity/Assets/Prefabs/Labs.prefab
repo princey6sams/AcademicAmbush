@@ -48,6 +48,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Labs
       objectReference: {fileID: 0}
+    - target: {fileID: 1599402304718605095, guid: 8f7b52c94d6572d42ac619492af5d3e9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1599402304718605096, guid: 8f7b52c94d6572d42ac619492af5d3e9,
         type: 3}
       propertyPath: m_RootOrder
@@ -102,6 +107,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599402305201447105, guid: 8f7b52c94d6572d42ac619492af5d3e9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599402305409087118, guid: 8f7b52c94d6572d42ac619492af5d3e9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1599402304718605101, guid: 8f7b52c94d6572d42ac619492af5d3e9, type: 3}
