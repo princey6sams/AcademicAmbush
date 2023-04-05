@@ -6,20 +6,21 @@ The Game has been developed using Unity 2021.3.19f1 (DX 11) and C# while followi
 
 Other tools like Blender, Photoshop, Snapseed, and AutoCAD were utilized to create & modify some of the assets and prefabs. Resources like Unity Asset Store and mixkit were used to source models and sound effects.
 
-The code is currently split into "Old" and "New," where "New" is the refactored set of replacements utilizing design patterns and principles for some of the "Old" code. The refactoring is ongoing and is due to reach a final state before the final submission.
+All code being used now is in the "New Scripts" folder and is representative of the refactored set of replacements utilizing design patterns and principles for all of the "Old" code. The refactoring is almost done, but we have reaped the benefits in extending the game by using the design patterns and principles.
 
-The current build of the game implements most of the proposed use cases mentioned in the project proposal along with some extra features which got added over time as the design for the game evolved. We would recommend users to play the game using the supplied builds of the game for Windows, MacOs, and Linux, as manually building it introduces more room for error and issues to intervene the desired portrayal of the game.
+The final build of the game implements most of the proposed use cases mentioned in the project proposal along with some extra features which got added over time as the design for the game evolved. We would recommend users to play the game using the supplied builds of the game for Windows, MacOs, and Linux, as manually building it introduces more room for error and issues to intervene the desired portrayal of the game. There is score-based dificulty scaling as well. The camera has been heavily implemented and bolstered to track the player around a bigger map where the player can move around in different sections.
 
 To play the prebuilt game:
 
 1. Run the appropriate application executable depending on which OS you are using.
 2. Select start in the Main Menu
 3. Use WASD and/or the arrow keys to move the spaceship.
-4. Use the Escape key to pause the game and reach the pause menu.
-5. Try to survive as long as you can, but if you lose, you reach the Game Over Screen.
-6. Shoot or crash into powerups to gain better shooting abilities with more guns.
-7. The volume can be altered at any point by going to the options from either the main menu or the pause menu.
-8. Select the Quit option from the Main Menu or use the appropriate shortcuts for your operating system (e.g., Alt + F4 for Windows).
+4. If Toggle Fire is on in the options, player can fire bullets using letf ctrl.
+5. Use the Escape key to pause the game and reach the pause menu.
+6. Try to survive as long as you can, but if you lose, you reach the Game Over Screen.
+7. Shoot or crash into powerups to gain better shooting abilities with more guns.
+8. The volume can be altered at any point by going to the options from either the main menu or the pause menu.
+9. Select the Quit option from the Main Menu or use the appropriate shortcuts for your operating system (e.g., Alt + F4 for Windows).
 
 To build the game yourself:
 

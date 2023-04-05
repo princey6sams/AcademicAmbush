@@ -86,7 +86,7 @@ public abstract class AdvancedInteractiveObjects : MonoBehaviour, InteractiveObj
     }
     public void applyPlayerDamage(Collider other) // Send to player?
     {
-        GameController.Instance.AddScore(scoreValue);
+        
         if (playerCheck(other))
         {
             PlayerController.Instance.setLife(damageValue);

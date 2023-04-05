@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using GS;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Boundary
@@ -41,13 +42,28 @@ public class PlayerController : MonoBehaviour
     public float gunCount = 0; //powerup
     public float fireRate = 1; //powerup combined w/ gunCount
 
+    //Toggle Slider
+    [SerializeField] private Slider toggleSlider = null;
+
+    [SerializeField] private TMP_Text toggleValue = null;
+
     void Start()
     {
         lifeCount = 4;
         playerHealth = 100;
         lifeText.text = "LIVES: " + lifeCount;
         playerHealthText.text = "HEALTH: " + playerHealth + "%";
+        toggleSlider.value = 0;
+        toggleSlider.onValueChanged.AddListener(OnToggleValueChanged);
+        toggleValue.text = "OFF";
+
     }
+
+    private void OnToggleValueChanged(float value)
+    {
+        toggleValue.text = value == 1 ? "ON" : "OFF";
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -61,12 +77,20 @@ public class PlayerController : MonoBehaviour
         //     }
         // }
         //If statement + Input.GetButton() for bomb
-        if (Time.time > nextFire)
+        if (toggleSlider.value == 1 && Input.GetKey(KeyCode.LeftControl) && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            setGun();
+            shotA.Play();
+
+        }
+        else if (toggleSlider.value == 0 && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             setGun();
             shotA.Play();
         }
+
     }
 
     void FixedUpdate()

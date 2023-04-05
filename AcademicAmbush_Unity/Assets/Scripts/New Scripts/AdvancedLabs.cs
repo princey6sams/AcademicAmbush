@@ -24,6 +24,8 @@ public class AdvancedLabs : AdvancedInteractiveObjects
         {
             applyPlayerDamage(other);
             Instantiate(explosion, transform.position, transform.rotation);
+            if (other.tag == "Bolt" || playerCheck(other))
+            { GameController.Instance.AddScore(scoreValue);}
             Destroy(gameObject);
         }
         Debug.Log("SimpleAsteroid.OnTriggerEnter");

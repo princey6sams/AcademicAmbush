@@ -9,13 +9,18 @@ public class OptionsMenu : MonoBehaviour
 {
     public GameObject optionsMenu;
     public GameObject previousMenu;
+    //Volume Slider
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private TMP_Text volumeValue = null;
+
+
     void Start()
     {
+
         volumeSlider.value = 1;
         AudioListener.volume = volumeSlider.value;
         VolumeSlider();
+
     }
     void Update()
     {
@@ -36,6 +41,4 @@ public class OptionsMenu : MonoBehaviour
         volumeValue.text = Mathf.RoundToInt(volumeSlider.value * 100).ToString() + '%';
         AudioListener.volume = volumeSlider.value;
     }
-
-
 }

@@ -6,8 +6,8 @@ using GS;
 public class AdvancedMids : AdvancedInteractiveObjects
 {
 
-    private float maxDistance;
-    private float distance;
+    private int maxDistance;
+    private int distance;
     private Vector3 direction;
     private float angle;
     private float RotationStep;
@@ -46,9 +46,8 @@ public class AdvancedMids : AdvancedInteractiveObjects
                 Instantiate(shot, shotSpawnR.position, shotSpawnR.rotation); //Right
             }
 
-            distance = Vector3.Distance(transform.position,
-            PlayerController.Instance.transform.position);
-
+            distance = Mathf.RoundToInt(Vector3.Distance(transform.position,
+            PlayerController.Instance.transform.position));
             direction = PlayerController.Instance.transform.position - transform.position;
             direction.Normalize();
 
@@ -57,17 +56,21 @@ public class AdvancedMids : AdvancedInteractiveObjects
             // Rotate the transform towards the target rotation by a maximum angle
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotationStep);
 
-            if (distance >= maxDistance)
+            if (distance > maxDistance)
             {
                 transform.position = Vector3.MoveTowards(this.transform.position,
                 PlayerController.Instance.transform.position,
                 speedMin * Time.deltaTime);
             }
-            else
+            else if (distance < maxDistance)
             {
                 transform.position = Vector3.MoveTowards(this.transform.position,
                 PlayerController.Instance.transform.position,
                 -speedMin * 0.85f * Time.deltaTime);
+            }
+            else if (distance == maxDistance)
+            {
+                transform.position = this.transform.position;
             }
         }
     }
@@ -92,6 +95,8 @@ public class AdvancedMids : AdvancedInteractiveObjects
             Instantiate(explosion, transform.position, transform.rotation);
             if (health <= 0)
             {
+                if (other.tag == "Bolt" || playerCheck(other))
+                { GameController.Instance.AddScore(scoreValue);}
                 Destroy(gameObject);
             }
         }
