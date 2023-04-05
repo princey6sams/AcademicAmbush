@@ -11,6 +11,7 @@ All code being used now is in the "New Scripts" folder and is representative of 
 The final build of the game implements most of the proposed use cases mentioned in the project proposal along with some extra features which got added over time as the design for the game evolved. We would recommend users to play the game using the supplied builds of the game for Windows, MacOs, and Linux, as manually building it introduces more room for error and issues to intervene the desired portrayal of the game. There is score-based dificulty scaling as well. The camera has been heavily implemented and bolstered to track the player around a bigger map where the player can move around in different sections.
 
 To play the prebuilt game:
+First open the Prebuilt folder. Then:
 
 1. Run the appropriate application executable depending on which OS you are using.
 2. Select start in the Main Menu
